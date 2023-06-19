@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel = "stylesheet" href= "style.css">
+</head>
+<body>
+
+    <div class= "header">
+        JavaScript - Inheritence & Prototype
+    </div>
+
+    <p>Question 1:  Create 2 objects - parent and child. Attach methods to parent and use those methods in child object using parents prototype</p>
+    <pre>
+        <u>Code</u>
+
+        const parent ={
+            details(){
+                console.log(`My name is ${this.name} and I am from ${this.location}`)
+            }
+            }
+            const firstchild = Object.create(parent);
+            firstchild.name ="apoorv";
+            firstchild.location="delhi";
+            
+            firstchild.details();
+            
+            const secondChild= Object.create(parent)
+            secondChild.name="arjun"
+            secondChild.location="delhi"
+            
+            secondChild.details()
+    </pre>
+    <pre>
+        <u>Output</u>
+        
+        My name is apoorv and I am from delhi
+        My name is arjun and I am from delhi
+    </pre>
+    <hr>
+    <p>Question 2: Write code to explain prototype chaining</p>
+    <pre>
+        <u>Code</u>
+        
+        const grandFather={
+            name:"Sanjay",
+            age: 70
+           }
+        const father=Object.create(grandFather)
+        console.log(father.name)
+        const son = Object.create(grandFather)
+        son.name= "Vijay"
+        console.log(son.name)
+    </pre>
+    <pre>
+        <u>Output</u>
+
+        Sanjay
+        Vijay
+    </pre>
+    <hr>
+    <p>Question 3: Add a method to calculate sum of all elements in Array in array's
+        protype, use that method to calculate sum for multiple arrays</p>
+    <pre>
+        <u>Code</u>
+        
+        let arr = new Array(1,2,3,4,5)
+        arr.__proto__.sum=function(givenArray){
+            let count = 0;
+            for(let i =0;i < arr.length;i++){
+                count +=arr[i];
+            }
+            return count;
+        }
+        let result =arr.sum(arr)
+        console.log(result);
+    </pre>
+    <pre>
+        <u>Output</u>
+
+        15
+    </pre>
+
+    <hr>
+    <p>Question 4: Write a JavaScript function to retrieve all the names of object's own
+        and inherited properties.</p>
+
+    <pre>
+        <u>Code</u>
+        
+        function DisplayData(name,age,college){
+            this.name = name,
+            this.age = age,
+            this.college=college
+        }
+        DisplayData.prototype.passyear ="2023"
+        const data = new DisplayData("abc", 23 , "Prepbytes")
+        console.log("The name is ",data.name);
+        console.log("The pass year is ",data.passyear)
+        console.log("The age is ",data.age)
+        console.log("The college is ",data.college)
+    </pre>
+    <pre>
+        <u>Ouput</u>
+
+        The name is  abc
+        The pass year is 2023
+        The age is  23
+        The college is Prepbytes
+    </pre>
+</body>
+</html>
